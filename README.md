@@ -5,6 +5,10 @@ Odoo is a suite of web based open source business apps.  More info at http://www
 
 The easiest way to play with it is the <a href="https://www.odoo.com/page/start">Odoo free trial</a>, email registration is NOT required, use the "skip this step" link on the registration page to skip it.
 
+Fork For Ahmet Altinisik
+------------------------
+This is the fork of the OCB fork of the Odoo forked by Ahmet Altinisik
+
 
 Getting started with Odoo development
 --------------------------------------
