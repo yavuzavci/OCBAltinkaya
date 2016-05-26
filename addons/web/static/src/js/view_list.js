@@ -1624,8 +1624,10 @@ instance.web.ListView.Groups = instance.web.Class.extend( /** @lends instance.we
             }, function (dataset) {
                 self.render_dataset(dataset).then(function (list) {
                     self.children[null] = list;
-                    self.elements =
-                        [list.$current.replaceAll($el)[0]];
+                    // do the actual rendering outside the event handling
+                    window.requestAnimationFrame(function() {
+                        self.elements = [list.$current.replaceAll($el)[0]];
+                    });
                     self.setup_resequence_rows(list, dataset);
                 }).always(function() {
                     if (post_render) { post_render(); }
