@@ -673,6 +673,9 @@ class stock_picking(osv.osv):
     _description = "Picking List"
     _order = "priority desc, date asc, id desc"
 
+    def onchange_partner_in(self, cr, uid, ids, partner_id=None, context=None):
+		return {}
+    
     def _set_min_date(self, cr, uid, id, field, value, arg, context=None):
         move_obj = self.pool.get("stock.move")
         if value:
@@ -2371,9 +2374,10 @@ class stock_move(osv.osv):
         context = context or {}
         procs_to_check = set()
         for move in self.browse(cr, uid, ids, context=context):
-            if move.state == 'done':
-                raise osv.except_osv(_('Operation Forbidden!'),
-                        _('You cannot cancel a stock move that has been set to \'Done\'.'))
+#            if move.state == 'done':
+                #cr.execute("update stock_move set state = 'cancel' where id = %s"%(move.id))
+                # raise osv.except_osv(_('Operation Forbidden!'),
+                #         _('You cannot cancel a stock move that has been set to \'Done\'.'))
             if move.reserved_quant_ids:
                 self.pool.get("stock.quant").quants_unreserve(cr, uid, move, context=context)
             if context.get('cancel_procurement'):
