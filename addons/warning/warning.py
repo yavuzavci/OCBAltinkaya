@@ -128,7 +128,7 @@ class account_invoice(osv.osv):
         title = False
         message = False
         partner = self.pool.get('res.partner').browse(cr, uid, partner_id, context=context)
-        if partner.invoice_warn != 'no-message':
+        if partner.invoice_warn != 'no-message' and 'disable_warning' not in context:
             title = _("Warning for %s") % partner.name
             message = partner.invoice_warn_msg
             warning = {
