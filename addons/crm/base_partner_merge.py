@@ -243,6 +243,9 @@ class MergePartnerAutomatic(osv.TransientModel):
         record_ids = proxy.search(cr, openerp.SUPERUSER_ID, domain, context=context)
 
         for record in proxy.browse(cr, openerp.SUPERUSER_ID, record_ids, context=context):
+            if record.model == 'prestashop.binding.odoo':
+                continue
+
             try:
                 proxy_model = self.pool[record.model]
                 column = proxy_model._columns[record.name]

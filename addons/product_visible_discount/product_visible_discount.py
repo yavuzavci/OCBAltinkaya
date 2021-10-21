@@ -125,7 +125,7 @@ class sale_order_line(osv.osv):
                     ctx['date'] = date_order
                     new_list_price = self.pool['res.currency'].compute(cr, uid,
                         currency_id.id, so_pricelist.currency_id.id,
-                        new_list_price, context=ctx)
+                        new_list_price, round=False, context=ctx)
                 discount = (new_list_price - price) / new_list_price * 100
                 if discount > 0:
                     result['price_unit'] = new_list_price
